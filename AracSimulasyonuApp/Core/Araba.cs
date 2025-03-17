@@ -23,7 +23,7 @@ namespace AracSimulasyonuApp.Core
 
         public decimal GunlukUcret { get; }
 
-        public bool MusaitMi { get; } = true;
+        public bool MusaitMi { get; set; } = true;
 
         public string AracBilgisiGoster()
         {

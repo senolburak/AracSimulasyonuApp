@@ -14,7 +14,7 @@ namespace AracSimulasyonuApp.Interfaces
         string Model { get; }
         AracTipi Tip { get; }
         decimal GunlukUcret { get; }
-        bool MusaitMi { get; }
+        bool MusaitMi { get; set; }
 
         
         string AracBilgisiGoster();
