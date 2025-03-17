@@ -8,12 +8,10 @@ namespace AracSimulasyonuApp
     {
         private List<IArac> araclar;
         private List<KiralamaBilgisi> kiralananAraclar = new List<KiralamaBilgisi>();
-
         public Form1()
         {
             InitializeComponent();
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             araclar = new List<IArac>
@@ -37,6 +35,43 @@ namespace AracSimulasyonuApp
             {
                 cmbAraclar.Items.Add(arac.AracBilgisiGoster());
             }
+        }
+
+        private void btnAracKirala_Click(object sender, EventArgs e)
+        {
+            if (cmbAraclar.SelectedIndex == -1 || !int.TryParse(txtGunSayisi.Text, out int gunSayisi)||gunSayisi<0)
+            {
+                MessageBox.Show("Lütfen geçerli bir araç seçiniz veya Lütfen geçerli bir Sayý Giriniz");
+                return;
+            }
+            IArac secilenArac = araclar[cmbAraclar.SelectedIndex]; 
+
+            if(!secilenArac.MusaitMi)
+            {
+                MessageBox.Show("Araç Þuanda Kirada");
+                return;
+            }
+            decimal toplamUcret = secilenArac.GunlukUcret * gunSayisi;
+
+            if(gunSayisi>=5)
+            {
+                toplamUcret *= 0.9m;
+            }
+
+            KiralamaBilgisi yeniKiralama = new KiralamaBilgisi
+            {
+                AracModel = secilenArac.Model,
+                GunSayisi = gunSayisi,
+                ToplamUcret = toplamUcret
+            };
+            kiralananAraclar.Add(yeniKiralama);
+            lsbKiralananArac.Items.Add(yeniKiralama);
+
+            secilenArac.MusaitMi = false;
+
+            cmbAraclar.Items[cmbAraclar.SelectedIndex] = $"{secilenArac.Model} - {secilenArac.Tip} Günlük Ücret - {secilenArac.GunlukUcret}";
+
+            lblSonuc.Text = $"Toplam Ücret: {toplamUcret}";
 
         }
     }

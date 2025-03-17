@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             cmbAraclar = new ComboBox();
-            lvKiralıkAracListesi = new ListView();
             label1 = new Label();
             label2 = new Label();
             txtGunSayisi = new TextBox();
             btnAracKirala = new Button();
             label3 = new Label();
             lblSonuc = new Label();
+            lsbKiralananArac = new ListBox();
             SuspendLayout();
             // 
             // cmbAraclar
@@ -45,14 +45,6 @@
             cmbAraclar.Name = "cmbAraclar";
             cmbAraclar.Size = new Size(468, 28);
             cmbAraclar.TabIndex = 0;
-            // 
-            // lvKiralıkAracListesi
-            // 
-            lvKiralıkAracListesi.Location = new Point(14, 198);
-            lvKiralıkAracListesi.Name = "lvKiralıkAracListesi";
-            lvKiralıkAracListesi.Size = new Size(558, 137);
-            lvKiralıkAracListesi.TabIndex = 1;
-            lvKiralıkAracListesi.UseCompatibleStateImageBehavior = false;
             // 
             // label1
             // 
@@ -89,6 +81,7 @@
             btnAracKirala.TabIndex = 4;
             btnAracKirala.Text = "Kirala";
             btnAracKirala.UseVisualStyleBackColor = true;
+            btnAracKirala.Click += btnAracKirala_Click;
             // 
             // label3
             // 
@@ -106,18 +99,26 @@
             lblSonuc.Size = new Size(93, 20);
             lblSonuc.TabIndex = 2;
             // 
+            // lsbKiralananArac
+            // 
+            lsbKiralananArac.FormattingEnabled = true;
+            lsbKiralananArac.Location = new Point(5, 188);
+            lsbKiralananArac.Name = "lsbKiralananArac";
+            lsbKiralananArac.Size = new Size(567, 144);
+            lsbKiralananArac.TabIndex = 6;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(585, 347);
+            Controls.Add(lsbKiralananArac);
             Controls.Add(label3);
             Controls.Add(btnAracKirala);
             Controls.Add(txtGunSayisi);
             Controls.Add(label2);
             Controls.Add(lblSonuc);
             Controls.Add(label1);
-            Controls.Add(lvKiralıkAracListesi);
             Controls.Add(cmbAraclar);
             Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 162);
             Name = "Form1";
@@ -130,12 +131,12 @@
         #endregion
 
         private ComboBox cmbAraclar;
-        private ListView lvKiralıkAracListesi;
         private Label label1;
         private Label label2;
         private TextBox txtGunSayisi;
         private Button btnAracKirala;
         private Label label3;
         private Label lblSonuc;
+        private ListBox lsbKiralananArac;
     }
 }
