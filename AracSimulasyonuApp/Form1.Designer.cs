@@ -36,6 +36,7 @@
             label3 = new Label();
             lblSonuc = new Label();
             lsbKiralananArac = new ListBox();
+            btnJsonVeriOluştur = new Button();
             SuspendLayout();
             // 
             // cmbAraclar
@@ -107,6 +108,16 @@
             lsbKiralananArac.Size = new Size(567, 144);
             lsbKiralananArac.TabIndex = 6;
             // 
+            // btnJsonVeriOluştur
+            // 
+            btnJsonVeriOluştur.Location = new Point(242, 145);
+            btnJsonVeriOluştur.Name = "btnJsonVeriOluştur";
+            btnJsonVeriOluştur.Size = new Size(156, 37);
+            btnJsonVeriOluştur.TabIndex = 4;
+            btnJsonVeriOluştur.Text = "Veri Oluştur";
+            btnJsonVeriOluştur.UseVisualStyleBackColor = true;
+            btnJsonVeriOluştur.Click += btnJsonVeriOluştur_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
@@ -114,6 +125,7 @@
             ClientSize = new Size(585, 347);
             Controls.Add(lsbKiralananArac);
             Controls.Add(label3);
+            Controls.Add(btnJsonVeriOluştur);
             Controls.Add(btnAracKirala);
             Controls.Add(txtGunSayisi);
             Controls.Add(label2);
@@ -122,6 +134,7 @@
             Controls.Add(cmbAraclar);
             Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 162);
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += Form1_Load;
             ResumeLayout(false);
@@ -138,5 +151,6 @@
         private Label label3;
         private Label lblSonuc;
         private ListBox lsbKiralananArac;
+        private Button btnJsonVeriOluştur;
     }
 }

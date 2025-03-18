@@ -1,3 +1,5 @@
+using System.Reflection;
+using System.Text.Json;
 using AracSimulasyonuApp.Core;
 using AracSimulasyonuApp.Enum;
 using AracSimulasyonuApp.Interfaces;
@@ -39,21 +41,21 @@ namespace AracSimulasyonuApp
 
         private void btnAracKirala_Click(object sender, EventArgs e)
         {
-            if (cmbAraclar.SelectedIndex == -1 || !int.TryParse(txtGunSayisi.Text, out int gunSayisi)||gunSayisi<0)
+            if (cmbAraclar.SelectedIndex == -1 || !int.TryParse(txtGunSayisi.Text, out int gunSayisi) || gunSayisi < 0)
             {
                 MessageBox.Show("Lütfen geçerli bir araç seçiniz veya Lütfen geçerli bir Sayý Giriniz");
                 return;
             }
-            IArac secilenArac = araclar[cmbAraclar.SelectedIndex]; 
+            IArac secilenArac = araclar[cmbAraclar.SelectedIndex];
 
-            if(!secilenArac.MusaitMi)
+            if (!secilenArac.MusaitMi)
             {
                 MessageBox.Show("Araç Þuanda Kirada");
                 return;
             }
             decimal toplamUcret = secilenArac.GunlukUcret * gunSayisi;
 
-            if(gunSayisi>=5)
+            if (gunSayisi >= 5)
             {
                 toplamUcret *= 0.9m;
             }
@@ -73,6 +75,50 @@ namespace AracSimulasyonuApp
 
             lblSonuc.Text = $"Toplam Ücret: {toplamUcret}";
 
+        }
+        private void JsonVeriKaydet()
+        {
+            try
+            {
+                string projeDizini = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                string hedefDizini = Path.Combine(projeDizini, @"..\..\..\", "Data");
+                string dosyaYolu = Path.Combine(hedefDizini, "data.json");
+
+                if (!Directory.Exists(hedefDizini))
+                {
+                    Directory.CreateDirectory(hedefDizini);
+                }
+                List<KiralamaBilgisi> mevcutVeriler = new List<KiralamaBilgisi>();
+                if (!File.Exists(dosyaYolu))
+                {
+                    mevcutVeriler = new List<KiralamaBilgisi>();
+                }
+                else
+                {
+                    string eskiJson = File.ReadAllText(dosyaYolu);
+                    var veriListesi = JsonSerializer.Deserialize<List<KiralamaBilgisi>>(eskiJson);
+                    if (veriListesi == null)
+                    {
+                        return;
+                    }
+                    mevcutVeriler = veriListesi;
+                }
+                mevcutVeriler.AddRange(kiralananAraclar);
+                var jsonAyar = new JsonSerializerOptions { WriteIndented = true };
+                string yeniJson = JsonSerializer.Serialize(mevcutVeriler, jsonAyar);
+                File.WriteAllText(dosyaYolu, yeniJson);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void btnJsonVeriOluþtur_Click(object sender, EventArgs e)
+        {
+            JsonVeriKaydet();
         }
     }
 }
