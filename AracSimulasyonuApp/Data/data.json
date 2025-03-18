@@ -1,0 +1,22 @@
+[
+  {
+    "AracModel": "Mercedes C Coupe",
+    "GunSayisi": 6,
+    "ToplamUcret": 9720.0
+  },
+  {
+    "AracModel": "Ford Focus",
+    "GunSayisi": 6,
+    "ToplamUcret": 5400.0
+  },
+  {
+    "AracModel": "Mazda MX-5",
+    "GunSayisi": 6,
+    "ToplamUcret": 11880.0
+  },
+  {
+    "AracModel": "Ford Transit",
+    "GunSayisi": 6,
+    "ToplamUcret": 7560.0
+  }
+]
